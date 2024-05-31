@@ -19,11 +19,11 @@ const NavBar = () => {
               <Navbar.Brand className='fw-bold fs-4' href="/e-commerce-app">ANN COLLECTION</Navbar.Brand>
               <Navbar.Toggle aria-controls="navbarScroll" />
               <Navbar.Collapse id="navbarScroll">
-                  <Nav className="mx-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                      <Nav.Link href="/e-commerce-app">Home</Nav.Link>
-                      <Nav.Link href="/e-commerce-app/about">About</Nav.Link>
-                      <Nav.Link href="/e-commerce-app/products">Products</Nav.Link>
-                      <Nav.Link href="/e-commerce-app/contact">Contact</Nav.Link>
+                  <Nav className="mx-auto my-2 my-lg-0 " style={{ maxHeight: '100px' }} navbarScroll>
+                      <NavLink to="/e-commerce-app" className="text-decoration-none text-secondary p-2">Home</NavLink>
+                      <NavLink to="/e-commerce-app/about" className="text-decoration-none text-secondary p-2">About</NavLink>
+                      <NavLink to="/e-commerce-app/products" className="text-decoration-none text-secondary p-2">Products</NavLink>
+                      <NavLink to="/e-commerce-app/contact" className="text-decoration-none text-secondary p-2">Contact</NavLink>
                   </Nav>
                   <div className='buttons'>
                       <NavLink to='/e-commerce-app/login' className='btn btn-outline-dark'>
