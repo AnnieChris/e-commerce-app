@@ -1,24 +1,15 @@
-// handleCart.js
+
 const handleCart = (state = [], action) => {
-    const product = action.payload;
+    console.log('Reducer action:', action); // Add logging statement
     switch (action.type) {
-        case "ADD_ITEM":
-            const exist = state.find((x) => x.id === product.id);
+        case 'ADD_ITEM':
+            const exist = state.find((x) => x.id === action.payload.id);
             if (exist) {
                 return state.map((x) =>
-                    x.id === product.id ? { ...x, qty: (x.qty || 0) + 1 } : x
+                    x.id === action.payload.id ? { ...x, qty: (x.qty || 0) + 1 } : x
                 );
             } else {
-                return [...state, { ...product, qty: 1 }];
-            }
-        case "DEL_ITEM":
-            const exist1 = state.find((x) => x.id === product.id);
-            if (exist1.qty === 1) {
-                return state.filter((x) => x.id !== product.id);
-            } else {
-                return state.map((x) =>
-                    x.id === product.id ? { ...x, qty: x.qty - 1 } : x
-                );
+                return [...state, { ...action.payload, qty: 1 }];
             }
         default:
             return state;
