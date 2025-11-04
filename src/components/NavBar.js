@@ -1,46 +1,23 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { Container, Nav, Navbar } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightToBracket, faUserPlus, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { Navbar, Nav, Container, Badge } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-const NavBar = () => {
-  const cartItems = useSelector(state => state.handleCart || []); // Ensure cartItems is initialized as an array
-  console.log(cartItems);
-
-  // Calculate cartItemCount, ensuring each item has a quantity property
-  const cartItemCount = cartItems.reduce((total, item) => total + (item.quantity || 0), 0);
-  console.log(cartItemCount);
-
+function AppNavbar({ cartCount }) {
   return (
-      <Navbar expand="lg" className="bg-white py-3 shadow-sm" sticky="top">
-          <Container>
-              <Navbar.Brand className='fw-bold fs-4' href="/e-commerce-app">ANN COLLECTION</Navbar.Brand>
-              <Navbar.Toggle aria-controls="navbarScroll" />
-              <Navbar.Collapse id="navbarScroll">
-                  <Nav className="mx-auto my-2 my-lg-0 " style={{ maxHeight: '100px' }} navbarScroll>
-                      <NavLink to="/e-commerce-app" className="text-decoration-none text-secondary p-2">Home</NavLink>
-                      <NavLink to="/e-commerce-app/about" className="text-decoration-none text-secondary p-2">About</NavLink>
-                      <NavLink to="/e-commerce-app/products" className="text-decoration-none text-secondary p-2">Products</NavLink>
-                      <NavLink to="/e-commerce-app/contact" className="text-decoration-none text-secondary p-2">Contact</NavLink>
-                  </Nav>
-                  <div className='buttons'>
-                      <NavLink to='/e-commerce-app/login' className='btn btn-outline-dark'>
-                          <FontAwesomeIcon className='fa fa-sign-in me-2' icon={faRightToBracket} />Login
-                      </NavLink>
-                      <NavLink to='/e-commerce-app/register' className='btn btn-outline-dark ms-2'>
-                          <FontAwesomeIcon className='fa fa-sign-in me-2' icon={faUserPlus} />Register
-                      </NavLink>
-                      <NavLink to='/e-commerce-app/cart' className='btn btn-outline-dark ms-2'>
-                          <FontAwesomeIcon className='fa fa-sign-in me-2' icon={faCartShopping} />
-                          Cart ({cartItemCount})
-                      </NavLink>
-                  </div>
-              </Navbar.Collapse>
-          </Container>
-      </Navbar>
-  )
+    <Navbar bg="dark" variant="dark" expand="lg">
+      <Container>
+        <Navbar.Brand as={Link} to="/e-commerce-app">MyShop</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link as={Link} to="/cart">
+              Cart <Badge bg="success">{cartCount}</Badge>
+            </Nav.Link>
+            <Nav.Link as={Link} to="/login">Login</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
 
-export default NavBar;
+export default AppNavbar;
