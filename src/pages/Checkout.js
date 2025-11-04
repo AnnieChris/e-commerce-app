@@ -14,7 +14,7 @@ const Checkout = () => {
     return (
       <div style={{ padding: "20px" }}>
         <h2>Your cart is empty!</h2>
-        <Link to="/">Go Shopping</Link>
+        <Link to="/e-commerce-app">Go Shopping</Link>
       </div>
     );
   }
